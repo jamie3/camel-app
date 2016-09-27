@@ -1,0 +1,7 @@
+<order>
+    <ebay>
+        <item id="car"/>
+        <item id="truck"/>
+        <item id="boat"/>
+    </ebay>
+</order>

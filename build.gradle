@@ -1,0 +1,61 @@
+group 'camel-app'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'jacoco'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+// executable on Unix-based systems using init.d
+// http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
+springBoot {
+    executable = true
+}
+
+dependencies {
+
+    // spring boot
+    compile 'org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jetty:1.4.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-actuator:1.4.0.RELEASE'
+
+    // camel
+    compile 'org.apache.camel:camel-core:2.17.+'
+    compile 'org.apache.camel:camel-jetty:2.17.+'
+    compile 'org.apache.camel:camel-jms:2.17.+'
+    compile 'org.apache.camel:camel-gson:2.17.+'
+    compile 'org.apache.camel:camel-spring-boot:2.17.+'
+
+    // groovy
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    // mq
+    compile 'com.ibm.mq:allclient:8.0'
+    compile 'com.ibm.jms:jms:8.0'
+    compile 'javax.jms:jms:1.1'
+
+    // test
+    testCompile 'junit:junit:4.+'
+}
